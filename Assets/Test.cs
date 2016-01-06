@@ -11,10 +11,14 @@ public class Test : MonoBehaviour {
 		// Set your key
 		TapsellDeveloper.getInstance ().setKey ("ekdcaoonjrofaqipsbnffdlnrdafefalbhcmastitqhbffkhdcoqahdilnqrabcsiahoon");
 		
-		TapsellDeveloper.getInstance ().setPurchaseNotifier((String sku, String purchaseId) => { 
-			TapsellDeveloper.getInstance ().consumeProduct(sku, (Boolean consumed, Boolean connected) => {
+		TapsellDeveloper.getInstance ().setPurchaseNotifier ((String sku, String purchaseId) => { 
+			TapsellDeveloper.getInstance ().consumeProduct (sku, (Boolean consumed, Boolean connected) => {
 				// Call after each purchase
 			});
+		});
+
+		TapsellDeveloper.getInstance ().isProductPurchasedAndNotConsumed ("product1", (Boolean checkResponse, Boolean connected, String purchaseId) => {
+			Debug.Log("isProductPurchasedAndNotConsumed: " + checkResponse + " " + connected + " " + purchaseId);
 		});
 		
 		// Check ready Advertisement

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class TapsellWrapper : MonoBehaviour{
 	Action<String, String> action;
 	Dictionary<String, Action<Boolean, Boolean>> consumeProductAction = new Dictionary<String, Action<Boolean, Boolean>>();
+	Dictionary<String, Action<Boolean, Boolean, String>> isProductPurchasedAndNotConsumedAction = new Dictionary<String, Action<Boolean, Boolean, String>>();
 
 	public void setPurchaseNotifier(Action<String, String> action){
 		this.action = action;
@@ -26,15 +27,8 @@ public class TapsellWrapper : MonoBehaviour{
 
 	public void notifyConsumeProduct(String ans){
 		Boolean first, second;
-		if (ans [0] == 't')
-			first = true;
-		else
-			first = false;
-
-		if (ans [1] == 't')
-			second = true;
-		else
-			second = false;
+		first = setBoolState (ans [0]);
+		second = setBoolState (ans [1]);
 		String newSku = ans.Substring (2);
 		if (consumeProductAction.ContainsKey(newSku)){
 			consumeProductAction[newSku](first, second);
@@ -51,5 +45,29 @@ public class TapsellWrapper : MonoBehaviour{
 
 	public void notifyGetUserInfo(String getUserTapCoinAmount){
 		DeveloperCtaInterface.getInstance ().notifyGetUserInfo (getUserTapCoinAmount);
+	}
+
+	public void isProductPurchasedAndNotConsumed(String sku, Action<Boolean, Boolean, String> action){
+		if (isProductPurchasedAndNotConsumedAction.ContainsKey (sku))
+			isProductPurchasedAndNotConsumedAction.Remove (sku);
+		isProductPurchasedAndNotConsumedAction.Add(sku, action);
+	}
+
+	public void notifyIsProductPurchasedAndNotConsumed(String ans){
+		Boolean first, second;
+		if (ans.Length == 0) {
+			return;
+		}
+		first = setBoolState (ans [0]);
+		second = setBoolState (ans [1]);
+		String newSku = ans.Substring(2, ans.LastIndexOf(" ") - 2);
+		String purchaseId = ans.Substring (ans.LastIndexOf (" "), ans.Length - ans.LastIndexOf(" "));
+		if (isProductPurchasedAndNotConsumedAction.ContainsKey(newSku)){
+			isProductPurchasedAndNotConsumedAction[newSku](first, second, purchaseId);
+		}
+	}
+
+	private Boolean setBoolState(Char chr){
+		return (chr == 't');
 	}
 }

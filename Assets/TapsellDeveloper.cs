@@ -28,6 +28,11 @@ public class TapsellDeveloper {
 		tapsellDeveloperInfo.Call ("consumeProduct", sku);
 		tapsellObject.wrapper.consumeProduct (sku, action);
 	}
+
+	public void isProductPurchasedAndNotConsumed(String sku, Action<Boolean, Boolean, String> action){
+		tapsellDeveloperInfo.Call ("isProductPurchasedAndNotConsumed", sku);
+		tapsellObject.wrapper.isProductPurchasedAndNotConsumed (sku, action);
+	}
 	
 	public void setKey(string key){
 		tapsellDeveloperInfo.Call("setDeveloperKey", key);

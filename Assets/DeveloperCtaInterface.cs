@@ -55,14 +55,8 @@ public class DeveloperCtaInterface{
 		if (ans.Length == 0) {
 			return;
 		}
-		if (ans [0] == 't')
-			first = true;
-		else
-			first = false;
-		if (ans [1] == 't')
-			second = true;
-		else
-			second = false;
+		first = setBoolState (ans [0]);
+		second = setBoolState (ans [1]);
 		String str = ans.Substring (2);
 		Int32 key = Int32.Parse(str);
 		if (actionPool.ContainsKey(key)){
@@ -76,16 +70,14 @@ public class DeveloperCtaInterface{
 			directAdAction(false, false, 0);
 			return;
 		}
-		if (ans [0] == 't')
-			first = true;
-		else
-			first = false;
-		if (ans [1] == 't')
-			second = true;
-		else
-			second = false;
+		first = setBoolState (ans [0]);
+		second = setBoolState (ans [1]);
 		String str = ans.Substring (2);
 		Int32 award = Int32.Parse(str);
 		directAdAction(first, second, award);
+	}
+
+	private Boolean setBoolState(Char chr){
+		return (chr == 't');
 	}
 }
