@@ -40,12 +40,12 @@ public class Test : MonoBehaviour {
 	{
 		if(GUI.Button(new Rect(50, 50, 100, 100), "Tapsell")){
 			// Start Tapsell offerwall
-			TapsellDeveloper.getInstance().startTapsell();
+			// TapsellDeveloper.getInstance().startTapsell();
 			
 			// Show Tapsell Advertisement
-			// DeveloperCtaInterface.getInstance().showNewCta (DeveloperCtaInterface.VIDEO_PLAY, 0, (Boolean connected, Boolean isAvailable, int award) => {
-			//	Debug.Log("test " + connected + " " + isAvailable + " " + award);
-			// });
+			DeveloperCtaInterface.getInstance().showNewCta (DeveloperCtaInterface.VIDEO_PLAY, 0, (Boolean connected, Boolean isAvailable, int award) => {
+				Debug.Log("test " + connected + " " + isAvailable + " " + award);
+			});
 		}
 	}
 }
