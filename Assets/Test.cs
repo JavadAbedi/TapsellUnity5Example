@@ -9,8 +9,8 @@ public class Test : MonoBehaviour {
 	
 	void Start () {
 		// Set your key
-		TapsellDeveloper.getInstance ().setKey ("ekdcaoonjrofaqipsbnffdlnrdafefalbhcmastitqhbffkhdcoqahdilnqrabcsiahoon");
-		
+		TapsellDeveloper.getInstance ().setKey ("sqfoqcflrbfhpqtogfbfbhlajtkfdbdtpnmjnmkemibpcjrramrskgflpamntfaqckarpt");
+
 		TapsellDeveloper.getInstance ().setPurchaseNotifier ((String sku, String purchaseId) => { 
 			TapsellDeveloper.getInstance ().consumeProduct (sku, (Boolean consumed, Boolean connected) => {
 				// Call after each purchase
@@ -20,11 +20,28 @@ public class Test : MonoBehaviour {
 		TapsellDeveloper.getInstance ().isProductPurchasedAndNotConsumed ("product1", (Boolean checkResponse, Boolean connected, String purchaseId) => {
 			Debug.Log("isProductPurchasedAndNotConsumed: " + checkResponse + " " + connected + " " + purchaseId);
 		});
-		
+
 		// Check ready Advertisement
 		DeveloperCtaInterface.getInstance().checkCtaAvailability (DeveloperCtaInterface.VIDEO_PLAY, 0, true, (Boolean connected, Boolean isAvailable) => {
-			Debug.Log("Tapsell: " + connected + " " + isAvailable);
+			Debug.Log("Tapsell: " + DeveloperCtaInterface.VIDEO_PLAY + " " + connected + " " + isAvailable);
 		});
+
+		DeveloperCtaInterface.getInstance().checkCtaAvailability (DeveloperCtaInterface.ALL_AD, 0, true, (Boolean connected, Boolean isAvailable) => {
+			Debug.Log("Tapsell: " + DeveloperCtaInterface.ALL_AD + " " + connected + " " + isAvailable);
+		});
+
+		DeveloperCtaInterface.getInstance().checkCtaAvailability (DeveloperCtaInterface.PAY_PER_CHARGE, 0, true, (Boolean connected, Boolean isAvailable) => {
+			Debug.Log("Tapsell: " + DeveloperCtaInterface.PAY_PER_CHARGE + " " + connected + " " + isAvailable);
+		});
+
+		DeveloperCtaInterface.getInstance().checkCtaAvailability (DeveloperCtaInterface.PAY_PER_INSTALL, 0, true, (Boolean connected, Boolean isAvailable) => {
+			Debug.Log("Tapsell: " + DeveloperCtaInterface.PAY_PER_INSTALL + " " + connected + " " + isAvailable);
+		});
+
+		DeveloperCtaInterface.getInstance().checkCtaAvailability (DeveloperCtaInterface.WEB_VIEW, 0, true, (Boolean connected, Boolean isAvailable) => {
+			Debug.Log("Tapsell: " + DeveloperCtaInterface.WEB_VIEW + " " + connected + " " + isAvailable);
+		});
+
 		
 		// Get user information
 		DeveloperCtaInterface.getInstance().getUserInfo ((int amount) => {
@@ -42,10 +59,10 @@ public class Test : MonoBehaviour {
 			// Start Tapsell offerwall
 			// TapsellDeveloper.getInstance().startTapsell();
 			
-			// Show Tapsell Advertisement
-			DeveloperCtaInterface.getInstance().showNewCta (DeveloperCtaInterface.VIDEO_PLAY, 0, (Boolean connected, Boolean isAvailable, int award) => {
+			 // Show Tapsell Advertisement
+			 DeveloperCtaInterface.getInstance().showNewCta (DeveloperCtaInterface.VIDEO_PLAY, -2, (Boolean connected, Boolean isAvailable, int award) => {
 				Debug.Log("test " + connected + " " + isAvailable + " " + award);
-			});
+			 });
 		}
 	}
 }

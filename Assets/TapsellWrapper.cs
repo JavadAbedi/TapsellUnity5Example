@@ -48,8 +48,9 @@ public class TapsellWrapper : MonoBehaviour{
 	}
 
 	public void isProductPurchasedAndNotConsumed(String sku, Action<Boolean, Boolean, String> action){
-		if (isProductPurchasedAndNotConsumedAction.ContainsKey (sku))
+		if (isProductPurchasedAndNotConsumedAction.ContainsKey (sku)) {
 			isProductPurchasedAndNotConsumedAction.Remove (sku);
+		}
 		isProductPurchasedAndNotConsumedAction.Add(sku, action);
 	}
 
