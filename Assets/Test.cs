@@ -13,11 +13,11 @@ public class Test : MonoBehaviour {
 
 		TapsellDeveloper.getInstance ().setPurchaseNotifier ((String sku, String purchaseId) => { 
 			TapsellDeveloper.getInstance ().consumeProduct (sku, (Boolean consumed, Boolean connected) => {
-				// Call after each purchase
+				Debug.Log("comsumeProduct: " + sku + " " + connected + " " + purchaseId);
 			});
 		});
 
-		TapsellDeveloper.getInstance ().isProductPurchasedAndNotConsumed ("product1", (Boolean checkResponse, Boolean connected, String purchaseId) => {
+		TapsellDeveloper.getInstance ().isProductPurchasedAndNotConsumed ("product_2", (Boolean checkResponse, Boolean connected, String purchaseId) => {
 			Debug.Log("isProductPurchasedAndNotConsumed: " + checkResponse + " " + connected + " " + purchaseId);
 		});
 
@@ -57,17 +57,17 @@ public class Test : MonoBehaviour {
 	{
 		if(GUI.Button(new Rect(50, 50, 100, 100), "Tapsell")){
 			// Start Tapsell offerwall
-			// TapsellDeveloper.getInstance().startTapsell();
+			TapsellDeveloper.getInstance().startTapsell();
 
 			 // Show Tapsell Advertisement
-			 DeveloperCtaInterface.getInstance().showNewCta (DeveloperCtaInterface.VIDEO_PLAY, 0, (Boolean connected, Boolean isAvailable, int award) => {
-				Debug.Log("test " + connected + " " + isAvailable + " " + award);
-				if(award > 0)
-				{
+			// DeveloperCtaInterface.getInstance().showNewCta (DeveloperCtaInterface.VIDEO_PLAY, 0, (Boolean connected, Boolean isAvailable, int award) => {
+			//	Debug.Log("test " + connected + " " + isAvailable + " " + award);
+			//	if(award > 0)
+			//	{
 					//print("ads complete");
 					//give heart
-				}
-			 });
+			//	}
+			// });
 		}
 	}
 }
