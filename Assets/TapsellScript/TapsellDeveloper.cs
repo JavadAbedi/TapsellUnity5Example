@@ -29,6 +29,10 @@ public class TapsellDeveloper {
 		tapsellObject.wrapper.consumeProduct (sku, action);
 	}
 
+	public void setAppUserId(String appUserId) {
+		tapsellDeveloperInfo.Call ("setAppUserId", appUserId);
+	}
+
 	public void isProductPurchasedAndNotConsumed(String sku, Action<Boolean, Boolean, String> action){
 		tapsellDeveloperInfo.Call ("isProductPurchasedAndNotConsumed", sku);
 		tapsellObject.wrapper.isProductPurchasedAndNotConsumed (sku, action);
@@ -43,7 +47,7 @@ public class TapsellDeveloper {
 	}
 
 	public void addHiddenSku(String sku){
-		tapsellDeveloperInfo.Call ("addHiddenSkua", sku);
+		tapsellDeveloperInfo.Call ("addHiddenSku", sku);
 	}
 
 	public void removeHiddenSku(String sku){
