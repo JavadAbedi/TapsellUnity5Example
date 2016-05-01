@@ -14,6 +14,26 @@ public class TapsellDeveloper {
 		return instance;
 	}
 
+	public void setAppUserInfo(AppUserInfo appUserInfo) {
+		AndroidJavaClass jc = new AndroidJavaClass("ir.tapsell.tapselldevelopersdk.developer.models.AppUserInfo");
+		jc.Call ("setPub0", appUserInfo.Pub0);
+		jc.Call ("setPub1", appUserInfo.Pub1);
+		jc.Call ("setPub2", appUserInfo.Pub2);
+		jc.Call ("setPub3", appUserInfo.Pub3);
+		jc.Call ("setPub4", appUserInfo.Pub4);
+		jc.Call ("setPub5", appUserInfo.Pub5);
+		jc.Call ("setPub6", appUserInfo.Pub6);
+		jc.Call ("setPub7", appUserInfo.Pub7);
+		jc.Call ("setPub8", appUserInfo.Pub8);
+		jc.Call ("setPub9", appUserInfo.Pub9);
+		tapsellDeveloperInfo.Call ("setAppUserInfo", appUserInfo.Pub0, appUserInfo.Pub1, appUserInfo.Pub2, appUserInfo.Pub3, appUserInfo.Pub4,
+		                           appUserInfo.Pub5, appUserInfo.Pub6, appUserInfo.Pub7, appUserInfo.Pub8, appUserInfo.Pub9);
+	}
+
+	public void removeUserInfo() {
+		tapsellDeveloperInfo.Call ("removeAppUserInfo");
+	}
+
 	public TapsellDeveloper(){
 		tapsellObject = new TapsellObject ();
 		AndroidJavaClass jc = new AndroidJavaClass("ir.tapsell.tapselldevelopersdk.developer.TapsellDeveloperInfo");
